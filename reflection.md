@@ -11,4 +11,13 @@
     I only encountered a couple of problems this week, and it was easiest to simply ask for help in the classroom. 
 
 4. Professional Mindset
-    I think this 
+    I think this shift is a great way to think about many other skills that we're developing in college. I'm a little worried about remembering what all the shorthand stands for as I start to learn multiple languages at the same time, but that seems like something I can figure out. 
+
+5. Week 2 Reflection
+    So far, I'll admit, most of the concepts click pretty easily, so there isn't a particular moment that clicks more than others for me. 
+
+6. Looking Forward
+    I'm most excited to be able to point at the final product and go, "I made that. Don't ask me how, but I made that."
+
+7. Support
+    I think the support of my classmates is a little bit less helpful, just because I think coding is a little bit more of an individual thing, but once we get into the design I think it will be a little bit easier to get feedback on the appearances of the site. 
