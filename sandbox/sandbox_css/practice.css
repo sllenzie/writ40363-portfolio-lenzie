@@ -2,9 +2,26 @@
     border: solid red;
 }
 
+header {
+    height: 70vh;
+    background-color: bisque;
+}
+
+.header_text{
+    background-color: rgb(126, 119, 191);
+    height: 50vh;
+    width: 45%;
+}
+
+.header_pic{
+    background-color: rgb(255, 46, 196);
+    height: 50vh;
+    width: 45%;
+}
+
 h1 {
     color: #4d1979;
-    background-color: azure;
+    background-color: rgb(36, 164, 164);
 }
 
 h2 {
