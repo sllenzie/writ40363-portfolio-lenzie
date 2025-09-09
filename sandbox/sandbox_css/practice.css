@@ -55,10 +55,24 @@ header {
     flex: 1;
     background-color: #e9ecef;
     min-height: 300px;
-    border-radius: 8px;
+    border-radius: 10px;
     align-items: center;
     justify-content: center;
     color: #6c757d;
+}
+
+main {
+    max-width: 65ch;
+    margin: 0 auto;
+    padding: 5%;
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+p + p {
+    margin-top: 1rem;
 }
 
 h1 {
@@ -89,18 +103,4 @@ p {
     font-size: 1rem;
     margin-bottom: 1rem;
     color: #555
-}
-
-main {
-    max-width: 65ch;
-    margin: 0 auto;
-    padding: 5%;
-}
-
-section {
-    margin-bottom: 2rem;
-}
-
-p + p {
-    margin-top: 1rem;
 }
