@@ -56,6 +56,7 @@ header {
     background-color: #e9ecef;
     min-height: 300px;
     border-radius: 10px;
+    /* soft, nice rounded corners :D */
     align-items: center;
     justify-content: center;
     color: #6c757d;
