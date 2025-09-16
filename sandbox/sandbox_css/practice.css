@@ -136,6 +136,7 @@ main {
   min-width: 250px;
 }
 
+/*this is for all of the sections having the same margin*/
 section {
     margin-bottom: 2rem;
 }
@@ -144,6 +145,7 @@ p + p {
     margin-top: 1rem;
 }
 
+/*headings*/
 h1 {
     font-size: 2.5rem;
     font-weight: 700;
@@ -174,6 +176,7 @@ p {
     color: #555
 }
 
+/*skills*/
 .skills-container {
   display: flex;
   flex-wrap: wrap;
@@ -194,6 +197,7 @@ p {
   margin-bottom: 0.5rem;
 }
 
+/*projects*/
 .projects-container {
   display: flex;
   flex-direction: column;
@@ -217,6 +221,7 @@ p {
   margin-bottom: 0.5rem;
 }
 
+/*overall for the entire website*/
 .container {
   max-width: 1000px;
   margin: 0 auto;
