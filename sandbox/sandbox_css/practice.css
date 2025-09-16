@@ -27,7 +27,38 @@ nav a {
 }
 
 nav a:hover {
-    color: #007bff;
+    color: #ff3bc7;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #2c3e50;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: rgb(247, 200, 236);
 }
 
 /* the next lines are a basic focus state for accessability */
@@ -72,28 +103,11 @@ header {
     border-radius: 10px;
 }
 
-
 /*moving on to the main*/
 main {
     max-width: 65ch;
     margin: 0 auto;
     padding: 5%;
-}
-
-section {
-    margin-bottom: 2rem;
-}
-
-p + p {
-    margin-top: 1rem;
-}
-
-h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #2d3748;
-    margin-bottom: 1rem;
-    line-height: 1.2;
 }
 
 .about-section {
@@ -120,6 +134,22 @@ h1 {
 .about-text {
   flex: 2;
   min-width: 250px;
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+p + p {
+    margin-top: 1rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 1rem;
+    line-height: 1.2;
 }
 
 h2 {
@@ -185,4 +215,37 @@ p {
 
 .project-card p {
   margin-bottom: 0.5rem;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
+section {
+  padding: 3rem 0;
+}
+
+section h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #2c3e50;
+}
+
+section h2::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: rgb(247, 200, 236);
+  margin: 1rem auto 0;
+  border-radius: 2px;
 }
