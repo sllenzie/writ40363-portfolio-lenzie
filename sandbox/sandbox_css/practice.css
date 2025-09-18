@@ -87,6 +87,7 @@ header {
     flex: 1;
     background-color: #e9ecef;
     min-height: 300px;
+    max-width: 400px;
     border-radius: 10px;
     /* soft, nice rounded corners :D */
     align-items: center;
@@ -154,7 +155,7 @@ main {
 
 /*this is for all of the sections having the same margin*/
 section {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 p + p {
