@@ -1,4 +1,6 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap');
+
 /* the next lines override the browser's margin and padding */
 * {
     box-sizing: border-box;
@@ -8,7 +10,7 @@
 
 /* the next lines define the font family, color, and line height for the body texts */
 body {
-        font-family: system-ui, -apple-system, sans-serif;
+        font-family: 'Newsreader', serif;
         line-height: 1.6;
         color: #333;
 }
