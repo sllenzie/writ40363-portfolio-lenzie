@@ -63,7 +63,7 @@ nav a {
 }
 
 nav a:hover {
-    color: #ff3bc7;
+    color: var(--accent-color);
 }
 
 .nav-container {
@@ -79,7 +79,7 @@ nav a:hover {
   font-size: 1.25rem;
   font-weight: bold;
   text-decoration: none;
-  color: #2c3e50;
+  color: var(--heading-color);
 }
 
 .nav-links {
@@ -89,12 +89,8 @@ nav a:hover {
 
 .nav-links a {
   text-decoration: none;
-  color: #2c3e50;
+  color: var(--heading-color);
   font-weight: 500;
-}
-
-.nav-links a:hover {
-  color: rgb(247, 200, 236);
 }
 
 /* the next lines are a basic focus state for accessability */
@@ -110,11 +106,11 @@ header {
     min-height: 60vh;
     padding: 2rem;
     gap: 2rem;
-    background-color: #f8f9fa
+    background-color: var(--background);
 }
 
 .header_text{
-    background-color: rgb(247, 200, 236);
+    background-color: var(--primary-color);
     flex: 1;
     padding: 2rem
 }
