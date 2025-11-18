@@ -243,7 +243,7 @@ header h1 {
 }
 
 .quotes-widget {
-  background: #ffffff;
+  background: var(--color-bg-light);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -275,8 +275,8 @@ header h1 {
 }
 
 .btn-primary {
-  background: #4299e1;
-  color: white;
+  background: var(--color-accent);
+  color: var(--color-bg-white);
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -289,7 +289,7 @@ header h1 {
 }
 
 .btn-primary:hover {
-  background: #3182ce;
+  background: var(--color-accent-dark);
 }
 
 .btn-primary:active {
@@ -312,7 +312,7 @@ header h1 {
 }
 
 .tasks-widget {
-  background: #ffffff;
+  background: var(--color-bg-light);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -341,7 +341,7 @@ header h1 {
   display: flex;
   justify-content: space-around;
   padding: 15px;
-  background: #f7fafc;
+  background: var(--color-bg-light);
   border-radius: 5px;
   margin-bottom: 15px;
   font-size: 13px;
@@ -369,7 +369,7 @@ header h1 {
 }
 
 .task-item:hover {
-  background: #f7fafc;
+  background: var(--color-bg-light);
 }
 
 .task-item input[type="checkbox"] {
