@@ -378,6 +378,12 @@ section.visible {
     filter: grayscale(0.2);
 }
 
+.card-icon img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+}
+
 .about-card h3 {
     font-family: var(--font-heading);
     font-size: 1.8rem;

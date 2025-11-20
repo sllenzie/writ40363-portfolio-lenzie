@@ -246,3 +246,33 @@ The icon will display at approximately:
 - **High-DPI screens:** Perfectly sharp without pixelation
 
 Made changes.
+
+sllenzie: i'd like to add the image that i uploaded in the images folder and replace the emoji of the graduation cap in the about card that references my education
+
+GitHub Copilot: Let me check what image you uploaded to the images folder: 
+
+Read [](file:///Users/stellalenzie/Documents/GitHub/writ40363-portfolio-lenzie/projects/project4.1-enhancedportfolio/images)
+
+Perfect! I'll replace the graduation cap emoji with your uploaded image: 
+
+Using "Replace String in File"
+
+
+```
+
+```
+Done! Your uploaded image now replaces the graduation cap emoji in the education card. The image will automatically scale to match the size of the other card icons (approximately 48px) thanks to the existing CSS styling.
+
+Made changes.
+
+sllenzie: i'd like to add a specific section in the .about-card styling in css that ensures that any image is scaled down to 48x48 pixels
+
+GitHub Copilot: Using "Replace String in File"
+
+
+```
+
+```
+Done! Any image inside `.card-icon` will now be constrained to exactly 48x48 pixels, with `object-fit: contain` ensuring the image scales proportionally without distortion.
+
+Made changes.
