@@ -3,245 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Stella Lenzie - Theatre & Digital Culture Professional Portfolio">
-    <title>Stella Lenzie | Portfolio</title>
+    <title>Book Review Tracker</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="#home" class="logo">SL</a>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#honors" class="nav-link">Honors</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
+    <div class="container">
+        <header>
+            <h1>📚 Book Review Tracker</h1>
+            <p class="subtitle">Keep track of your reading journey</p>
+        </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1 class="hero-title">
-                    <span class="greeting">Hello, I'm</span>
-                    <span class="name">Stella Lenzie</span>
-                </h1>
-                <p class="hero-subtitle">Theatre & Digital Culture Professional</p>
-                <p class="hero-description">
-                    Senior at Texas Christian University pursuing dual degrees in Theatre and Digital Culture & Data Analytics
-                </p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Get in Touch</a>
-                    <a href="#experience" class="btn btn-secondary">View My Work</a>
+        <!-- Add New Review Section -->
+        <section class="add-review-section">
+            <h2>Add New Review</h2>
+            <form id="reviewForm">
+                <div class="form-group">
+                    <label for="bookTitle">Book Title *</label>
+                    <input type="text" id="bookTitle" required placeholder="Enter book title">
                 </div>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <span>Scroll Down</span>
-            <div class="scroll-arrow"></div>
-        </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-card">
-                    <div class="card-icon">🎓</div>
-                    <h3>Education</h3>
-                    <p><strong>Texas Christian University</strong></p>
-                    <p>Bachelor of Arts in Theatre</p>
-                    <p>Bachelor of Science in Digital Culture & Data Analytics</p>
-                    <p>Minor in Arts Leadership & Entrepreneurship</p>
-                    <p class="highlight">GPA: 3.77 | Graduating May 2026</p>
+                <div class="form-group">
+                    <label for="author">Author *</label>
+                    <input type="text" id="author" required placeholder="Enter author name">
                 </div>
-                <div class="about-card">
-                    <div class="card-icon">🎭</div>
-                    <h3>Theatre Passion</h3>
-                    <p>Experienced in props crew for multiple productions including <em>Othello</em>, <em>The Odyssey</em>, and <em>Circle Mirror Transformation</em></p>
-                    <p>Box office staff for major productions</p>
-                </div>
-                <div class="about-card">
-                    <div class="card-icon">📊</div>
-                    <h3>Data Analytics</h3>
-                    <p>Marketing and Data Analytics Intern at Fort Worth Opera and The Van Cliburn Competition</p>
-                    <p>Combining creative and analytical skills for strategic insights</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="experience">
-        <div class="container">
-            <h2 class="section-title">Experience & Leadership</h2>
-            
-            <div class="experience-category">
-                <h3 class="category-title">Professional Experience</h3>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <span class="timeline-date">January 2025 - May 2025</span>
-                            <h4>Marketing and Data Analytics Intern</h4>
-                            <p class="company">Fort Worth Opera</p>
-                        </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="genre">Genre *</label>
+                        <select id="genre" required>
+                            <option value="">Select a genre</option>
+                            <option value="Fiction">Fiction</option>
+                            <option value="Non-Fiction">Non-Fiction</option>
+                            <option value="Mystery">Mystery</option>
+                            <option value="Thriller">Thriller</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Science Fiction">Science Fiction</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Biography">Biography</option>
+                            <option value="History">History</option>
+                            <option value="Self-Help">Self-Help</option>
+                            <option value="Other">Other</option>
+                        </select>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <span class="timeline-date">May 2025 - June 2025</span>
-                            <h4>Marketing and Data Analytics Intern</h4>
-                            <p class="company">The Seventeenth International Van Cliburn Competition</p>
-                        </div>
+
+                    <div class="form-group">
+                        <label for="dateRead">Date Read</label>
+                        <input type="date" id="dateRead">
                     </div>
                 </div>
-            </div>
 
-            <div class="experience-category">
-                <h3 class="category-title">Theatre Production</h3>
-                <div class="experience-grid">
-                    <div class="experience-card">
-                        <h4>Props Crew</h4>
-                        <p class="role">Theatre TCU</p>
-                        <ul class="production-list">
-                            <li>Othello</li>
-                            <li>The Effect of Gamma Rays on Man-in-the-Moon Marigolds</li>
-                            <li>The Odyssey</li>
-                            <li>Hail Mary!</li>
-                            <li>Circle Mirror Transformation</li>
-                        </ul>
-                        <span class="date">February 2023 - December 2025</span>
+                <div class="form-group">
+                    <label>Rating *</label>
+                    <div class="star-rating" id="starRating">
+                        <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
                     </div>
-                    <div class="experience-card">
-                        <h4>Box Office Staff</h4>
-                        <p class="role">Theatre TCU</p>
-                        <ul class="production-list">
-                            <li>The Skin of Our Teeth</li>
-                            <li>Eurydice</li>
-                            <li>Jesus Christ Superstar</li>
-                        </ul>
-                        <span class="date">January 2024 - May 2024</span>
-                    </div>
+                    <input type="hidden" id="rating" required>
                 </div>
-            </div>
 
-            <div class="experience-category">
-                <h3 class="category-title">Leadership & Committee Work</h3>
-                <div class="experience-grid">
-                    <div class="experience-card leadership">
-                        <h4>Phi Mu Epsilon Iota Chapter</h4>
-                        <div class="leadership-roles">
-                            <div class="role-item">
-                                <strong>Recruitment Data Committee & Matching Coordinator</strong>
-                                <span>May 2024 - August 2024, May 2025 - August 2025</span>
-                            </div>
-                            <div class="role-item">
-                                <strong>Honor Committee Chairwoman</strong>
-                                <span>December 2023 - Present</span>
-                            </div>
-                            <div class="role-item">
-                                <strong>Parliamentarian</strong>
-                                <span>December 2022 - December 2023</span>
-                            </div>
-                        </div>
-                        <span class="membership">Active Member Since August 2022</span>
-                    </div>
+                <div class="form-group">
+                    <label for="keywords">Keywords (comma-separated)</label>
+                    <input type="text" id="keywords" placeholder="e.g., adventure, heartwarming, page-turner">
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Honors Section -->
-    <section id="honors" class="honors">
-        <div class="container">
-            <h2 class="section-title">Honors & Recognition</h2>
-            <div class="honors-grid">
-                <div class="honor-card featured">
-                    <div class="honor-icon">🏆</div>
-                    <h3>Outstanding Senior Nominee</h3>
-                    <p>Phi Mu Fraternity</p>
-                    <span class="honor-date">Fall 2025</span>
+                <div class="form-group">
+                    <label for="review">Review *</label>
+                    <textarea id="review" required placeholder="Write your thoughts about this book..." rows="5"></textarea>
                 </div>
-                <div class="honor-card featured">
-                    <div class="honor-icon">🎤</div>
-                    <h3>Featured Speaker</h3>
-                    <p>Liberal Arts in Action: A Human-Centered AI Future</p>
-                    <span class="honor-date">Spring 2025</span>
-                </div>
-                <div class="honor-card">
-                    <div class="honor-icon">⭐</div>
-                    <h3>TCU Scholar</h3>
-                    <p>Spring 2024, Fall 2024, Spring 2025</p>
-                </div>
-                <div class="honor-card">
-                    <div class="honor-icon">📜</div>
-                    <h3>Dean's List</h3>
-                    <p>Spring 2023, Fall 2023, Spring 2024, Fall 2024, Spring 2025</p>
-                </div>
-                <div class="honor-card">
-                    <div class="honor-icon">🎯</div>
-                    <h3>Public Speaking Excellence Award Finalist</h3>
-                    <p>Bob Schieffer College of Communications</p>
-                    <span class="honor-date">Spring 2024</span>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Let's Connect</h2>
-            <div class="contact-content">
-                <p class="contact-intro">I'm always open to new opportunities and collaborations. Feel free to reach out!</p>
-                <div class="contact-info">
-                    <a href="mailto:stella.lenzie@gmail.com" class="contact-item">
-                        <div class="contact-icon">📧</div>
-                        <div class="contact-details">
-                            <h4>Email</h4>
-                            <p>stella.lenzie@gmail.com</p>
-                        </div>
-                    </a>
-                    <a href="tel:+13109263160" class="contact-item">
-                        <div class="contact-icon">📱</div>
-                        <div class="contact-details">
-                            <h4>Phone</h4>
-                            <p>+1 310.926.3160</p>
-                        </div>
-                    </a>
-                    <a href="https://instagram.com/stella.lenzie" target="_blank" class="contact-item">
-                        <div class="contact-icon">📸</div>
-                        <div class="contact-details">
-                            <h4>Instagram</h4>
-                            <p>@stella.lenzie</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+                <button type="submit" class="btn btn-primary">Add Review</button>
+            </form>
+        </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Stella Lenzie. All rights reserved.</p>
-            <p class="footer-subtitle">Theatre • Digital Culture • Data Analytics</p>
-        </div>
-    </footer>
+        <!-- Filter Section -->
+        <section class="filter-section">
+            <h2>Your Reviews</h2>
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label for="filterGenre">Filter by Genre:</label>
+                    <select id="filterGenre">
+                        <option value="">All Genres</option>
+                        <option value="Fiction">Fiction</option>
+                        <option value="Non-Fiction">Non-Fiction</option>
+                        <option value="Mystery">Mystery</option>
+                        <option value="Thriller">Thriller</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Science Fiction">Science Fiction</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="Biography">Biography</option>
+                        <option value="History">History</option>
+                        <option value="Self-Help">Self-Help</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="searchKeyword">Search Keywords:</label>
+                    <input type="text" id="searchKeyword" placeholder="Type to search...">
+                </div>
+
+                <button class="btn btn-secondary" id="clearFilters">Clear Filters</button>
+            </div>
+        </section>
+
+        <!-- Reviews Display Section -->
+        <section class="reviews-section">
+            <div id="reviewsContainer" class="reviews-grid">
+                <!-- Reviews will be dynamically added here -->
+            </div>
+            <div id="emptyState" class="empty-state">
+                <p>No reviews yet. Add your first book review above!</p>
+            </div>
+        </section>
+    </div>
 
     <script src="js/script.js"></script>
 </body>

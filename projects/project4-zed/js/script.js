@@ -1,363 +1,303 @@
-// ===========================
-// Navbar Scroll Effect
-// ===========================
-const navbar = document.getElementById('navbar');
-const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-const navMenu = document.getElementById('navMenu');
+// Book Review Tracker - Main JavaScript
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
+// State management
+let reviews = [];
+let selectedRating = 0;
+
+// DOM Elements
+const reviewForm = document.getElementById('reviewForm');
+const starRating = document.getElementById('starRating');
+const stars = starRating.querySelectorAll('.star');
+const ratingInput = document.getElementById('rating');
+const reviewsContainer = document.getElementById('reviewsContainer');
+const emptyState = document.getElementById('emptyState');
+const filterGenre = document.getElementById('filterGenre');
+const searchKeyword = document.getElementById('searchKeyword');
+const clearFiltersBtn = document.getElementById('clearFilters');
+
+// Initialize app
+document.addEventListener('DOMContentLoaded', () => {
+    loadReviewsFromLocalStorage();
+    displayReviews();
+    setupEventListeners();
 });
 
-// ===========================
-// Mobile Menu Toggle
-// ===========================
-mobileMenuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    mobileMenuToggle.classList.toggle('active');
-});
-
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        mobileMenuToggle.classList.remove('active');
+// Event Listeners Setup
+function setupEventListeners() {
+    // Star rating interaction
+    stars.forEach(star => {
+        star.addEventListener('click', handleStarClick);
+        star.addEventListener('mouseenter', handleStarHover);
     });
-});
 
-// ===========================
-// Smooth Scroll & Active Nav Links
-// ===========================
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-link');
-
-function highlightNavLink() {
-    let current = '';
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        
-        if (window.scrollY >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
+    starRating.addEventListener('mouseleave', () => {
+        updateStarDisplay(selectedRating);
     });
-    
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
+
+    // Form submission
+    reviewForm.addEventListener('submit', handleFormSubmit);
+
+    // Filter and search
+    filterGenre.addEventListener('change', applyFilters);
+    searchKeyword.addEventListener('input', applyFilters);
+    clearFiltersBtn.addEventListener('click', clearFilters);
+}
+
+// Star Rating Functions
+function handleStarClick(e) {
+    const rating = parseInt(e.target.dataset.rating);
+    selectedRating = rating;
+    ratingInput.value = rating;
+    updateStarDisplay(rating);
+}
+
+function handleStarHover(e) {
+    const rating = parseInt(e.target.dataset.rating);
+    updateStarDisplay(rating, true);
+}
+
+function updateStarDisplay(rating, isHover = false) {
+    stars.forEach((star, index) => {
+        star.classList.remove('active', 'hover');
+        if (index < rating) {
+            star.classList.add(isHover ? 'hover' : 'active');
         }
     });
 }
 
-window.addEventListener('scroll', highlightNavLink);
+// Form Submission Handler
+function handleFormSubmit(e) {
+    e.preventDefault();
 
-// ===========================
-// Intersection Observer for Animations
-// ===========================
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
+    // Validate rating
+    if (!selectedRating) {
+        alert('Please select a rating');
+        return;
+    }
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+    // Gather form data
+    const newReview = {
+        id: Date.now(),
+        title: document.getElementById('bookTitle').value.trim(),
+        author: document.getElementById('author').value.trim(),
+        genre: document.getElementById('genre').value,
+        dateRead: document.getElementById('dateRead').value,
+        rating: selectedRating,
+        keywords: document.getElementById('keywords').value
+            .split(',')
+            .map(kw => kw.trim())
+            .filter(kw => kw !== ''),
+        review: document.getElementById('review').value.trim()
+    };
+
+    // Add review to state
+    reviews.unshift(newReview); // Add to beginning of array
+
+    // Save to local storage
+    saveReviewsToLocalStorage();
+
+    // Reset form
+    reviewForm.reset();
+    selectedRating = 0;
+    ratingInput.value = '';
+    updateStarDisplay(0);
+
+    // Update display
+    displayReviews();
+
+    // Show success feedback
+    showSuccessMessage('Review added successfully!');
+}
+
+// Display Reviews
+function displayReviews(filteredReviews = reviews) {
+    reviewsContainer.innerHTML = '';
+
+    if (filteredReviews.length === 0) {
+        emptyState.classList.remove('hidden');
+        return;
+    }
+
+    emptyState.classList.add('hidden');
+
+    filteredReviews.forEach(review => {
+        const reviewCard = createReviewCard(review);
+        reviewsContainer.appendChild(reviewCard);
+    });
+}
+
+// Create Review Card
+function createReviewCard(review) {
+    const card = document.createElement('div');
+    card.className = 'review-card';
+    card.dataset.reviewId = review.id;
+
+    // Format date
+    const dateDisplay = review.dateRead 
+        ? new Date(review.dateRead).toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'short', 
+            day: 'numeric' 
+          })
+        : 'Date not specified';
+
+    // Create star display
+    const starDisplay = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+
+    // Create keywords HTML
+    const keywordsHTML = review.keywords.length > 0
+        ? `<div class="keywords">
+            ${review.keywords.map(kw => `<span class="keyword-tag">${kw}</span>`).join('')}
+           </div>`
+        : '';
+
+    card.innerHTML = `
+        <div class="review-header">
+            <h3>${escapeHtml(review.title)}</h3>
+            <p class="author">by ${escapeHtml(review.author)}</p>
+        </div>
+        <div class="review-meta">
+            <span class="genre-tag">${review.genre}</span>
+            <span class="date-tag">${dateDisplay}</span>
+        </div>
+        <div class="review-rating">
+            <div class="review-stars">${starDisplay}</div>
+        </div>
+        <div class="review-text">
+            ${escapeHtml(review.review)}
+        </div>
+        ${keywordsHTML}
+        <div class="review-actions">
+            <button class="btn btn-danger" onclick="deleteReview(${review.id})">Delete</button>
+        </div>
+    `;
+
+    return card;
+}
+
+// Delete Review
+function deleteReview(id) {
+    if (confirm('Are you sure you want to delete this review?')) {
+        reviews = reviews.filter(review => review.id !== id);
+        saveReviewsToLocalStorage();
+        applyFilters();
+        showSuccessMessage('Review deleted successfully!');
+    }
+}
+
+// Filter and Search Functions
+function applyFilters() {
+    const genreFilter = filterGenre.value;
+    const keywordSearch = searchKeyword.value.toLowerCase().trim();
+
+    let filteredReviews = reviews;
+
+    // Filter by genre
+    if (genreFilter) {
+        filteredReviews = filteredReviews.filter(review => review.genre === genreFilter);
+    }
+
+    // Filter by keyword
+    if (keywordSearch) {
+        filteredReviews = filteredReviews.filter(review => {
+            const titleMatch = review.title.toLowerCase().includes(keywordSearch);
+            const authorMatch = review.author.toLowerCase().includes(keywordSearch);
+            const reviewMatch = review.review.toLowerCase().includes(keywordSearch);
+            const keywordMatch = review.keywords.some(kw => 
+                kw.toLowerCase().includes(keywordSearch)
+            );
             
-            // Add staggered animation to children
-            const children = entry.target.querySelectorAll('.about-card, .experience-card, .honor-card, .timeline-item');
-            children.forEach((child, index) => {
-                setTimeout(() => {
-                    child.style.animation = `fadeInUp 0.6s ease-out forwards`;
-                }, index * 100);
-            });
+            return titleMatch || authorMatch || reviewMatch || keywordMatch;
+        });
+    }
+
+    displayReviews(filteredReviews);
+}
+
+function clearFilters() {
+    filterGenre.value = '';
+    searchKeyword.value = '';
+    displayReviews();
+}
+
+// Local Storage Functions
+function saveReviewsToLocalStorage() {
+    try {
+        localStorage.setItem('bookReviews', JSON.stringify(reviews));
+    } catch (error) {
+        console.error('Error saving to local storage:', error);
+        alert('Failed to save reviews. Please check your browser settings.');
+    }
+}
+
+function loadReviewsFromLocalStorage() {
+    try {
+        const storedReviews = localStorage.getItem('bookReviews');
+        if (storedReviews) {
+            reviews = JSON.parse(storedReviews);
         }
-    });
-}, observerOptions);
-
-// Observe all sections
-sections.forEach(section => {
-    observer.observe(section);
-});
-
-// ===========================
-// Parallax Effect for Hero Section
-// ===========================
-const hero = document.querySelector('.hero');
-const heroContent = document.querySelector('.hero-content');
-
-window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    if (scrolled < window.innerHeight) {
-        heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
-        heroContent.style.opacity = 1 - (scrolled / 800);
-    }
-});
-
-// ===========================
-// Typing Effect for Hero Title
-// ===========================
-const nameElement = document.querySelector('.name');
-const nameText = nameElement.textContent;
-nameElement.textContent = '';
-
-let charIndex = 0;
-function typeWriter() {
-    if (charIndex < nameText.length) {
-        nameElement.textContent += nameText.charAt(charIndex);
-        charIndex++;
-        setTimeout(typeWriter, 100);
+    } catch (error) {
+        console.error('Error loading from local storage:', error);
+        reviews = [];
     }
 }
 
-// Start typing effect after page loads
-window.addEventListener('load', () => {
-    setTimeout(typeWriter, 500);
-});
-
-// ===========================
-// Animated Counter for Stats (if needed later)
-// ===========================
-function animateCounter(element, target, duration) {
-    let start = 0;
-    const increment = target / (duration / 16);
-    
-    const timer = setInterval(() => {
-        start += increment;
-        if (start >= target) {
-            element.textContent = target;
-            clearInterval(timer);
-        } else {
-            element.textContent = Math.floor(start);
-        }
-    }, 16);
+// Utility Functions
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
 }
 
-// ===========================
-// Cursor Trail Effect (Optional - Subtle)
-// ===========================
-const coords = { x: 0, y: 0 };
-const circles = document.querySelectorAll('.cursor-circle');
+function showSuccessMessage(message) {
+    // Create temporary success message
+    const successDiv = document.createElement('div');
+    successDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        animation: slideInRight 0.3s ease-out;
+        font-weight: 500;
+    `;
+    successDiv.textContent = message;
 
-// Create cursor circles if they don't exist
-if (circles.length === 0 && window.innerWidth > 768) {
-    for (let i = 0; i < 10; i++) {
-        const circle = document.createElement('div');
-        circle.className = 'cursor-circle';
-        circle.style.cssText = `
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255, 182, 193, 0.3);
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.2s ease-out;
-        `;
-        document.body.appendChild(circle);
-    }
-}
+    document.body.appendChild(successDiv);
 
-window.addEventListener('mousemove', (e) => {
-    coords.x = e.clientX;
-    coords.y = e.clientY;
-});
-
-function animateCursor() {
-    let x = coords.x;
-    let y = coords.y;
-    
-    document.querySelectorAll('.cursor-circle').forEach((circle, index) => {
-        circle.style.left = x - 4 + 'px';
-        circle.style.top = y - 4 + 'px';
-        circle.style.transform = `scale(${(10 - index) / 10})`;
-        
-        const nextCircle = document.querySelectorAll('.cursor-circle')[index + 1];
-        if (nextCircle) {
-            x += (parseInt(nextCircle.style.left) - x) * 0.3;
-            y += (parseInt(nextCircle.style.top) - y) * 0.3;
-        }
-    });
-    
-    requestAnimationFrame(animateCursor);
-}
-
-if (window.innerWidth > 768) {
-    animateCursor();
-}
-
-// ===========================
-// Card Tilt Effect
-// ===========================
-const cards = document.querySelectorAll('.about-card, .experience-card, .honor-card');
-
-cards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / 20;
-        const rotateY = (centerX - x) / 20;
-        
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
-    });
-    
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-    });
-});
-
-// ===========================
-// Contact Form Animation (if form added later)
-// ===========================
-const contactItems = document.querySelectorAll('.contact-item');
-
-contactItems.forEach((item, index) => {
-    item.style.animationDelay = `${index * 0.1}s`;
-});
-
-// ===========================
-// Scroll to Top Button (Optional)
-// ===========================
-const scrollTopBtn = document.createElement('button');
-scrollTopBtn.innerHTML = '↑';
-scrollTopBtn.className = 'scroll-top-btn';
-scrollTopBtn.style.cssText = `
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, #D88A99 0%, #FFB6C1 100%);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    font-size: 24px;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 1000;
-    box-shadow: 0 5px 20px rgba(255, 182, 193, 0.3);
-`;
-
-document.body.appendChild(scrollTopBtn);
-
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 500) {
-        scrollTopBtn.style.opacity = '1';
-        scrollTopBtn.style.visibility = 'visible';
-    } else {
-        scrollTopBtn.style.opacity = '0';
-        scrollTopBtn.style.visibility = 'hidden';
-    }
-});
-
-scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
-
-scrollTopBtn.addEventListener('mouseenter', () => {
-    scrollTopBtn.style.transform = 'scale(1.1)';
-});
-
-scrollTopBtn.addEventListener('mouseleave', () => {
-    scrollTopBtn.style.transform = 'scale(1)';
-});
-
-// ===========================
-// Loading Animation
-// ===========================
-window.addEventListener('load', () => {
-    document.body.style.overflow = 'hidden';
-    
+    // Remove after 3 seconds
     setTimeout(() => {
-        document.body.style.overflow = 'auto';
-    }, 100);
-});
-
-// ===========================
-// Enhanced Timeline Animations
-// ===========================
-const timelineItems = document.querySelectorAll('.timeline-item');
-
-const timelineObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-            setTimeout(() => {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateX(0)';
-            }, index * 150);
-        }
-    });
-}, { threshold: 0.5 });
-
-timelineItems.forEach(item => {
-    item.style.opacity = '0';
-    item.style.transform = 'translateX(-30px)';
-    item.style.transition = 'all 0.6s ease-out';
-    timelineObserver.observe(item);
-});
-
-// ===========================
-// Honor Cards Cascade Animation
-// ===========================
-const honorCards = document.querySelectorAll('.honor-card');
-
-const honorObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-            setTimeout(() => {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'scale(1)';
-            }, index * 100);
-        }
-    });
-}, { threshold: 0.2 });
-
-honorCards.forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'scale(0.8)';
-    card.style.transition = 'all 0.5s ease-out';
-    honorObserver.observe(card);
-});
-
-// ===========================
-// Prevent Animation on Page Load
-// ===========================
-window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
-});
-
-// ===========================
-// Accessibility: Keyboard Navigation
-// ===========================
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-        navMenu.classList.remove('active');
-        mobileMenuToggle.classList.remove('active');
-    }
-});
-
-// ===========================
-// Dynamic Year in Footer
-// ===========================
-const footer = document.querySelector('.footer p');
-if (footer) {
-    footer.textContent = `© ${new Date().getFullYear()} Stella Lenzie. All rights reserved.`;
+        successDiv.style.animation = 'slideOutRight 0.3s ease-out';
+        setTimeout(() => successDiv.remove(), 300);
+    }, 3000);
 }
 
-console.log('🎀 Portfolio loaded successfully!');
+// Add animation styles dynamically
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideInRight {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    @keyframes slideOutRight {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
