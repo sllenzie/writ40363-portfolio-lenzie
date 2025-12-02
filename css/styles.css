@@ -48,6 +48,101 @@ body {
     background: var(--white);
 }
 
+
+
+/* ===========================
+   Projects Section
+   =========================== */
+.projects {
+    background: linear-gradient(135deg, var(--pale-pink) 0%, var(--white) 100%);
+    padding: var(--spacing-lg) 0;
+    margin-top: 70px; /* Account for fixed navbar */
+    text-align: center;
+    opacity: 1 !important; /* Override default section opacity */
+    transform: none !important; /* Override default section transform */
+}
+
+.projects h2 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--charcoal);
+    margin-bottom: var(--spacing-md);
+    position: relative;
+    display: inline-block;
+}
+
+.projects h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--deep-rose) 0%, var(--primary-pink) 100%);
+    border-radius: 2px;
+}
+
+.projects ul {
+    list-style: none;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.projects li {
+    background: var(--white);
+    border-radius: 15px;
+    padding: 1.5rem 2rem;
+    transition: var(--transition-smooth);
+    border: 2px solid transparent;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.projects li:hover {
+    transform: translateX(10px);
+    border-color: var(--primary-pink);
+    box-shadow: 0 8px 25px rgba(255, 182, 193, 0.3);
+    background: linear-gradient(135deg, var(--white) 0%, var(--blush-pink) 100%);
+}
+
+.projects a {
+    color: var(--deep-rose);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    display: block;
+    position: relative;
+    transition: var(--transition-fast);
+}
+
+.projects a:hover {
+    color: var(--primary-pink);
+}
+
+.projects a:focus {
+    outline: 3px solid var(--primary-pink);
+    outline-offset: 4px;
+    border-radius: 5px;
+}
+
+.projects a::before {
+    content: '→';
+    position: absolute;
+    left: -1.5rem;
+    opacity: 0;
+    transition: var(--transition-smooth);
+    color: var(--primary-pink);
+}
+
+.projects li:hover a::before {
+    opacity: 1;
+    left: -2rem;
+}
+
 /* ===========================
    Navigation
    =========================== */
@@ -803,6 +898,18 @@ section.visible {
         font-size: 2rem;
     }
     
+    .projects h2 {
+        font-size: 2rem;
+    }
+    
+    .projects ul {
+        padding: 0 1rem;
+    }
+    
+    .projects a {
+        font-size: 1.1rem;
+    }
+    
     .about-content,
     .experience-grid,
     .honors-grid {
@@ -853,6 +960,26 @@ section.visible {
     
     section {
         padding: var(--spacing-md) 0;
+    }
+    
+    .projects {
+        padding: var(--spacing-md) 0;
+    }
+    
+    .projects h2 {
+        font-size: 1.8rem;
+    }
+    
+    .projects li {
+        padding: 1rem 1.5rem;
+    }
+    
+    .projects a {
+        font-size: 1rem;
+    }
+    
+    .projects a::before {
+        display: none; /* Hide arrow on very small screens for better readability */
     }
 }
 
