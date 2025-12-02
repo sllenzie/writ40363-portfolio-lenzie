@@ -547,7 +547,7 @@ section.visible {
 /* Timeline */
 .timeline {
     position: relative;
-    padding-left: 3rem;
+    padding-left: 2.4rem;
 }
 
 .timeline::before {
