@@ -731,7 +731,9 @@ section.visible {
    Skills Section
    =========================== */
 .skills {
-    background: var(--white);
+    background: var(--light-gray);
+    padding-top: var(--spacing-md) !important;
+    padding-bottom: var(--spacing-lg) !important;
 }
 
 .skills-grid {
