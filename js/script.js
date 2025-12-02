@@ -245,27 +245,29 @@ scrollTopBtn.addEventListener('mouseleave', () => {
 });
 
 // ===========================
-// Loading Animation & Scroll Reset
+// Scroll Position Memory
 // ===========================
-// Prevent browser from restoring scroll position
-if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-}
-
-// Force scroll to top on page load
+// Save scroll position when navigating away
 window.addEventListener('beforeunload', () => {
-    window.scrollTo(0, 0);
+    localStorage.setItem('portfolioScrollPosition', window.scrollY.toString());
 });
 
+// Restore scroll position on page load
 window.addEventListener('load', () => {
-    // Immediately scroll to top
-    window.scrollTo(0, 0);
-    document.body.style.overflow = 'hidden';
+    const savedScrollPosition = localStorage.getItem('portfolioScrollPosition');
     
-    setTimeout(() => {
-        document.body.style.overflow = 'auto';
-        window.scrollTo(0, 0); // Ensure it's at top after overflow is restored
-    }, 100);
+    if (savedScrollPosition) {
+        // Restore to saved position
+        setTimeout(() => {
+            window.scrollTo({
+                top: parseInt(savedScrollPosition),
+                behavior: 'instant'
+            });
+        }, 100);
+    } else {
+        // Default: scroll to top for first visit
+        window.scrollTo(0, 0);
+    }
 });
 
 // ===========================
