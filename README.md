@@ -131,16 +131,15 @@ This portfolio was enhanced with GitHub Copilot assistance. The AI helped with:
 - Email: stella.lenzie@gmail.com
 - Phone: +1 310.926.3160
 - Instagram: [@stella.lenzie](https://instagram.com/stella.lenzie)
-- Course: WRIT 40363 - Digital Content Design and Analysis
+- Course: WRIT 40363 - Multimedia Authoring: Web Apps and Development
 - Semester: Fall 2025
 - Institution: Texas Christian University
 
 ## Acknowledgments
 - **GitHub Copilot**: AI pair programming assistant for code suggestions and optimization
 - **Google Fonts**: Playfair Display and Poppins typefaces
-- **TCU Theatre Department**: For the incredible production experiences
-- **Fort Worth Opera & Van Cliburn Competition**: For professional internship opportunities
-- **Professor**: WRIT 40363 course instruction and feedback
+- **Gemmeni Pro**: Image generation for the three images in the About Me Section
+- **Dr. Curt Rode**: WRIT 40363 course instruction and feedback
 
 ## License
 This project is part of an academic portfolio for WRIT 40363. All rights reserved.
