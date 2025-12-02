@@ -245,13 +245,26 @@ scrollTopBtn.addEventListener('mouseleave', () => {
 });
 
 // ===========================
-// Loading Animation
+// Loading Animation & Scroll Reset
 // ===========================
+// Prevent browser from restoring scroll position
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+// Force scroll to top on page load
+window.addEventListener('beforeunload', () => {
+    window.scrollTo(0, 0);
+});
+
 window.addEventListener('load', () => {
+    // Immediately scroll to top
+    window.scrollTo(0, 0);
     document.body.style.overflow = 'hidden';
     
     setTimeout(() => {
         document.body.style.overflow = 'auto';
+        window.scrollTo(0, 0); // Ensure it's at top after overflow is restored
     }, 100);
 });
 
