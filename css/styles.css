@@ -83,53 +83,54 @@ body {
     border-radius: 2px;
 }
 
-.projects ul {
+.projects-list {
     list-style: none;
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 0 2rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
-.projects li {
+.project-item {
     background: var(--white);
     border-radius: 15px;
-    padding: 1.5rem 2rem;
+    padding: 2rem;
     transition: var(--transition-smooth);
     border: 2px solid transparent;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
-.projects li:hover {
+.project-item:hover {
     transform: translateX(10px);
     border-color: var(--primary-pink);
     box-shadow: 0 8px 25px rgba(255, 182, 193, 0.3);
     background: linear-gradient(135deg, var(--white) 0%, var(--blush-pink) 100%);
 }
 
-.projects a {
+.project-link {
     color: var(--deep-rose);
     text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: 500;
+    font-size: 1.3rem;
+    font-weight: 600;
     display: block;
     position: relative;
     transition: var(--transition-fast);
+    margin-bottom: 0.75rem;
 }
 
-.projects a:hover {
+.project-link:hover {
     color: var(--primary-pink);
 }
 
-.projects a:focus {
+.project-link:focus {
     outline: 3px solid var(--primary-pink);
     outline-offset: 4px;
     border-radius: 5px;
 }
 
-.projects a::before {
+.project-link::before {
     content: '→';
     position: absolute;
     left: -1.5rem;
@@ -138,9 +139,17 @@ body {
     color: var(--primary-pink);
 }
 
-.projects li:hover a::before {
+.project-item:hover .project-link::before {
     opacity: 1;
     left: -2rem;
+}
+
+.project-description {
+    color: var(--gray);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+    padding-left: 0;
 }
 
 /* ===========================
@@ -998,12 +1007,16 @@ section.visible {
         font-size: 2rem;
     }
     
-    .projects ul {
+    .projects-list {
         padding: 0 1rem;
     }
     
-    .projects a {
+    .project-link {
         font-size: 1.1rem;
+    }
+    
+    .project-description {
+        font-size: 0.95rem;
     }
     
     .about-content,
@@ -1072,15 +1085,19 @@ section.visible {
         font-size: 1.8rem;
     }
     
-    .projects li {
-        padding: 1rem 1.5rem;
+    .project-item {
+        padding: 1.5rem;
     }
     
-    .projects a {
+    .project-link {
         font-size: 1rem;
     }
     
-    .projects a::before {
+    .project-description {
+        font-size: 0.9rem;
+    }
+    
+    .project-link::before {
         display: none; /* Hide arrow on very small screens for better readability */
     }
 }
