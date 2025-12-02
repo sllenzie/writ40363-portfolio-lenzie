@@ -276,3 +276,4 @@ GitHub Copilot: Using "Replace String in File"
 Done! Any image inside `.card-icon` will now be constrained to exactly 48x48 pixels, with `object-fit: contain` ensuring the image scales proportionally without distortion.
 
 Made changes.
+
