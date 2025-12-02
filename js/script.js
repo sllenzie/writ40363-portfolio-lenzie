@@ -86,40 +86,6 @@ sections.forEach(section => {
     observer.observe(section);
 });
 
-// ===========================
-// Parallax Effect for Hero Section
-// ===========================
-const hero = document.querySelector('.hero');
-const heroContent = document.querySelector('.hero-content');
-
-window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    if (scrolled < window.innerHeight) {
-        heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
-        heroContent.style.opacity = 1 - (scrolled / 800);
-    }
-});
-
-// ===========================
-// Typing Effect for Hero Title
-// ===========================
-const nameElement = document.querySelector('.name');
-const nameText = nameElement.textContent;
-nameElement.textContent = '';
-
-let charIndex = 0;
-function typeWriter() {
-    if (charIndex < nameText.length) {
-        nameElement.textContent += nameText.charAt(charIndex);
-        charIndex++;
-        setTimeout(typeWriter, 100);
-    }
-}
-
-// Start typing effect after page loads
-window.addEventListener('load', () => {
-    setTimeout(typeWriter, 500);
-});
 
 // ===========================
 // Animated Counter for Stats (if needed later)
