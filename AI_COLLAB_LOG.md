@@ -1,4 +1,4 @@
-# AI Collaboration Log - Project Zed
+# AI Collaboration Log - Project Zed- Portfolio
 
 ## Tools Used:
 - **Zed Editor**: Primary development environment with AI assistant integration
