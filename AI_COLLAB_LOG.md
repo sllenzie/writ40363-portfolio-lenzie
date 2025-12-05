@@ -2,76 +2,25 @@
 
 ## Tools Used:
 - **Zed Editor**: Primary development environment with AI assistant integration
-- **AI Assistant**: [Specify which AI model you used - e.g., Claude, GPT-4, etc.]
-- **Additional Tools**: [List any other tools - e.g., browser dev tools, version control, etc.]
+- **AI Assistant**: Claude Sonnet 4.5
+- **Additional Tools**: I also used Google's Gemmini Pro 2.0 in order to generate images for the about me section.
 
 ## Learning Moments:
-- [Describe what you learned about AI-assisted development]
-- [Note any insights about prompt engineering]
-- [Document any new technical skills or concepts learned]
-- [Reflect on the collaboration process itself]
+- I found that I needed to be incredibly specific with what I wanted, in order to get the results I was looking for.
+- I also found that the more I pointed out what I was looking at and for, the more it was likely to help.
 
 ## Challenges:
-- [Describe technical challenges you encountered]
-- [Note any difficulties with AI prompting or responses]
-- [Document issues with code integration or debugging]
-- [Explain how you overcame these challenges]
+- There was a sticky moment where the scroll feature absolutely refused to not jump to the top of the page every time that the page was reloaded, but when I specifically asked to fix that it was an easy fix. 
 
 ## Process Evolution:
-- **Initial Approach**: [Describe how you started working with AI]
-- **Refinements**: [Explain how your prompting and collaboration improved]
-- **Final Workflow**: [Describe your optimized process by project end]
-- **Key Takeaways**: [What would you do differently next time?]
+- **Initial Approach**: I spoke to the AI like I would speak to any colleague, in a professional and respectful manner, but was very detailed about what I was looking for in the results. 
+- **Refinements**: Once I was more nitpicky, then it became more efficent in the way I got what I was looking for. 
+- **Final Workflow**: By the end of the project, I was actually seeing what I could do to fix what I was doing, instead of asking the AI assistant, instead of the other way around. 
+- **Key Takeaways**: Next time, I might do something different as far as the initial setup of the website. 
 
 ## Sample Conversations:
 
-### Conversation 1: [Brief description of topic]
-**Prompt:**
-```
-[Your prompt to the AI]
-```
-
-**AI Response:**
-```
-[Key parts of the AI's response]
-```
-
-**Outcome:** [What you did with this response]
-
----
-
-### Conversation 2: [Brief description of topic]
-**Prompt:**
-```
-[Your prompt to the AI]
-```
-
-**AI Response:**
-```
-[Key parts of the AI's response]
-```
-
-**Outcome:** [What you did with this response]
-
----
-
-### Conversation 3: [Brief description of topic]
-**Prompt:**
-```
-[Your prompt to the AI]
-```
-
-**AI Response:**
-```
-[Key parts of the AI's response]
-```
-
-**Outcome:** [What you did with this response]
-
----
-
-## Reflection:
-[Add a final reflection on the AI-assisted development experience, including what worked well and what you'd improve]
+### Conversation 1: [Initial Idea Setup]
 
 sllenzie: good afternoon! i would like to create a professional portfolio website that showcases how attractive i am as a candidate to employers. i would like it to be professional, clean, and have a light pink theme. i also want it to have polished transitions and eye-catching features. 
 
@@ -183,6 +132,8 @@ You can open `index.html` in your browser to view it! All your resume informatio
 
 Made changes.
 
+### Conversation 2: [Trying to get the Images I wanted]
+
 sllenzie: in the about card that references my education, develop an interesting and conceptual svg file to replace the cliche graduation cap emoji
 
 GitHub Copilot: I'll create a unique SVG to replace the graduation cap emoji in the about card. Let me first look at the current HTML to see how it's structured. 
@@ -196,10 +147,7 @@ Created [](file:///Users/stellalenzie/Documents/GitHub/writ40363-portfolio-lenzi
 Now I'll update the HTML to use the SVG instead of the emoji: 
 
 Using "Replace String in File"
-
-
 ```
-
 ```
 Perfect! I've created a conceptual SVG that represents education through:
 
@@ -227,8 +175,6 @@ Here's the revised approach:
 Created [](file:///Users/stellalenzie/Documents/GitHub/writ40363-portfolio-lenzie/projects/project4.1-enhancedportfolio/images/education-icon.svg)
 
 Using "Replace String in File"
-
-
 ```
 
 ```
@@ -277,6 +223,8 @@ Done! Any image inside `.card-icon` will now be constrained to exactly 48x48 pix
 
 Made changes.
 
+
+### Conversation 3: [Adding in CSS styling to match the rest of the portfolio]
 
 sllenzie: I want to add css styling for the section class "projects" that is in the top part of the index file. I want it to match the rest of the style of the portfolio, including all the accessibility previously mentioned
 
@@ -367,15 +315,12 @@ Read [](file:///Users/stellalenzie/Documents/GitHub/writ40363-portfolio-lenzie/c
 Found it! The issue is that all `section` elements have `opacity: 0` by default and need the `.visible` class to be visible. The `.projects` section needs to override this or have initial visibility. Let me fix this: 
 
 Using "Replace String in File"
-
-
 ```
 
 ```
 Perfect! The issue was that all `section` elements in your CSS have `opacity: 0` by default and require a `.visible` class (likely added by JavaScript on scroll) to become visible. I've added `opacity: 1 !important` and `transform: none !important` to the `.projects` section to ensure it's always visible, overriding the default section styling. The text should now be visible!
 
 Made changes.
-
 
 sllenzie: When the page reloads, it seems to automatically scroll to the bottom. Is there a way to stop that?
 
@@ -388,7 +333,6 @@ Read [](file:///Users/stellalenzie/Documents/GitHub/writ40363-portfolio-lenzie/j
 The issue is likely caused by the browser trying to restore scroll position. Let me add code to prevent this and ensure the page loads at the top: 
 
 Using "Replace String in File"
-
 
 ```
 

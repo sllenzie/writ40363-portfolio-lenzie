@@ -138,7 +138,7 @@ This portfolio was enhanced with GitHub Copilot assistance. The AI helped with:
 ## Acknowledgments
 - **GitHub Copilot**: AI pair programming assistant for code suggestions and optimization
 - **Google Fonts**: Playfair Display and Poppins typefaces
-- **Gemmeni Pro**: Image generation for the three images in the About Me Section
+- **Gemmini Pro**: Image generation for the three images in the About Me Section
 - **Dr. Curt Rode**: WRIT 40363 course instruction and feedback
 
 ## License
